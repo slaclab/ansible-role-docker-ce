@@ -28,13 +28,20 @@
     _docker_mandatory_channel: []
     _docker_merged_channels: "{{ _docker_mandatory_channel }} + [ '{{ docker_channel }}' ]"
 
+- name: Remove conflicting packages
+  package:
+    name:
+    - runc
+    - containers-common
+    state: absent
+
 - name: Add Docker CE repository
   become: true
-  get_url:
-    url: "{{ docker_repository_url[_docker_os_dist] | default(docker_repository_url[_docker_os_dist_file_varity]) }}"
+  template:
+    src: docker-ce.repo.j2
     dest: /etc/yum.repos.d/docker-ce.repo
     mode: 0644
-    force: yes
+    force: true
   register: _docker_repo
   until: _docker_repo is succeeded
   changed_when: no
