@@ -4,7 +4,7 @@ baseurl=https://download.docker.com/linux/centos/$releasever/$basearch/stable
 enabled=1
 gpgcheck=1
 gpgkey=https://download.docker.com/linux/centos/gpg
-{% if yum_repos_http_proxy %}proxy = {{ yum_repos_http_proxy }}{% endif %}
+{% if ( yum_repos_http_proxy is defined and yum_repos_http_proxy ) %}proxy = {{ yum_repos_http_proxy }}{% endif %}
 
 
 [docker-ce-stable-debuginfo]
