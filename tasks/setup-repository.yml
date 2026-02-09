@@ -5,8 +5,6 @@
 - name: Update repository cache
   become: true
   shell: "{{ docker_cmd_update_repo_cache[_docker_os_dist] | default(docker_cmd_update_repo_cache[_docker_os_dist_file_varity]) }}"
-  args:
-    warn: false
   changed_when: false
   register: _result
   until: _result is succeeded

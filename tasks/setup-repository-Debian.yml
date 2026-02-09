@@ -14,8 +14,6 @@
     - name: Retry APT cache update with allow-releaseinfo-change
       become: true
       command: apt-get update --allow-releaseinfo-change
-      args:
-        warn: false
       changed_when: false
       register: _pkg_result
       until: _pkg_result is succeeded
@@ -48,8 +46,6 @@
 - name: Add Docker APT key (alternative for older Ubuntu systems without SNI).
   become: true
   shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
-  args:
-    warn: false
   changed_when: false
   when:
     - docker_network_access | bool

@@ -72,8 +72,6 @@
 - name: Disable Docker CE repository channels
   become: true
   shell: "{{ docker_cmd_enable_disable_repo[_docker_os_dist_file_varity] }}"
-  args:
-    warn: false
   loop: "{{ _docker_disable_channels }}"
   changed_when: false
   vars:
@@ -84,8 +82,6 @@
 - name: Enable Docker CE repository channels
   become: true
   shell: "{{ docker_cmd_enable_disable_repo[_docker_os_dist_file_varity] }}"
-  args:
-    warn: false
   loop: "{{ _docker_enable_channels }}"
   changed_when: false
   vars:
