@@ -34,8 +34,6 @@
 - name: Remove network interface docker0
   become: yes
   command: ip link del docker0
-  args:
-    warn: no
   ignore_errors: yes
   changed_when: no
   tags:
@@ -52,8 +50,6 @@
 - name: Clean yum cache (CentOS/RedHat 7)
   become: yes
   command: yum clean all --enablerepo=\*
-  args:
-    warn: no
   changed_when: no
   when: (_docker_os_dist == "CentOS" and _docker_os_dist_major_version | int == 7) or
         (_docker_os_dist == "RedHat" and _docker_os_dist_major_version | int == 7)
@@ -61,8 +57,6 @@
 - name: Clean dnf cache (CentOS/Fedora/RedHat)
   become: yes
   command: dnf clean all --enablerepo=\*
-  args:
-    warn: no
   changed_when: no
   when: _docker_os_dist == "Fedora" or
         (_docker_os_dist == "RedHat" and _docker_os_dist_major_version | int > 7) or
@@ -154,8 +148,6 @@
 - name: Update repository cache
   become: true
   shell: "{{ docker_cmd_update_repo_cache[_docker_os_dist_file_varity] }}"
-  args:
-    warn: false
   changed_when: false
   register: _result
   until: _result is succeeded
