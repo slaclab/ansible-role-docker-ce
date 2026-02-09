@@ -21,6 +21,4 @@
 - name: restart auditd
   become: yes
   command: service auditd restart
-  args:
-    warn: no
   tags: ["install", "configure"]
