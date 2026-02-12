@@ -1,4 +1,4 @@
-{{ ansible_mananged | comment }}
+{{ ansible_managed | comment }}
 [Service]
 {% for option in docker_systemd_containerd_service_config %}
 {{ option }}
