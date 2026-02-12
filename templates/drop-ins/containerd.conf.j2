@@ -1,0 +1,5 @@
+{{ ansible_mananged | comment }}
+[Service]
+{% for option in docker_systemd_containerd_service_config %}
+{{ option }}
+{% endfor %}
