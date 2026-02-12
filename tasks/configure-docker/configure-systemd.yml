@@ -38,6 +38,8 @@
     group: root
     mode: 0644
   register: _docker_systemd_containerd_dropin
+  notify:
+   - restart containerd
     
 - name: Combine Docker daemon environment variable configuration
   set_fact:
