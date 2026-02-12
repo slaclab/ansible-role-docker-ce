@@ -186,3 +186,5 @@ docker_remove_all: false
 # Additional files or directories to be remove if for example non-standard locations
 # was previously configured for data storage etc.
 docker_remove_additional: []
+
+docker_systemd_containerd_service_config: []
